@@ -1,0 +1,14 @@
+services:
+   web:
+     build:
+       context: .
+       args:
+         XAMPP_URL: "https://ufpr.dl.sourceforge.net/project/xampp/XAMPP%20Linux/8.2.4/xampp-linux-x64-8.2.4-0-installer.run"
+     ports:
+       - "41061:22"
+       - "41062:80"
+     networks:
+       - default
+     volumes:
+       - ./www:/www
+     restart: always
