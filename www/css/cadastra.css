@@ -177,7 +177,7 @@ flex-direction:column;
 align-content:center;
 align-items:center;
 }
-.form-input input[type='text'], .form-input input[type='number']{
+.form-input input[type='text'], .form-input input[type='password']{
 -moz-appearance: textfield;
 padding:10px;
 border-radius:5px;
