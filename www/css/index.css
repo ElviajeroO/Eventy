@@ -74,7 +74,8 @@
 
 .corpo {
     height: 100%;
-    background-image: linear-gradient(to right, #d4baf1, #c6c6eb);
+/*    background-image: linear-gradient(to right, #d4baf1, #c6c6eb); */
+    background-color: #402B38; 
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -105,7 +106,7 @@
 }
 
 .titulo_cadastro {
-    color: #242424;
+    color: #F27E9D;
     padding-left: 3px;
     font-size:30px ;
 }
@@ -275,4 +276,16 @@
     .logo {
         display: none;
     }
+}
+
+#Link{
+	color: #F27E9D;
+	font-size:25px;
+}
+#link a:hover{
+	color:#BC91D9;
+}
+
+#link a:visited{
+	color:#BC91D9;
 }

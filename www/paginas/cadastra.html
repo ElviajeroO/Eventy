@@ -1,32 +1,38 @@
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" href="../css/cadastra.css" />
-		<script defer src=""></script>
-	</head>
-	<body>
-		<header>
-		</header>
-		<div class='div-body'>
-			<div class='div-form'>
-				<div class='form-text'>
-					<a>Autenticação</a>
-				</div>
-				<form id='cadastra-forms'>
-					<div class='form-input'>
-						<input name='nome' type='text' placeholder='Usuario'></input>
-						<input name='senha'type='password' placeholder='Senha'></input>
-					</div>
-					<div class='reset-senha'>
-						<a href="./recupera.html">Esqueci minha senha?</a>
-					</div>
-					<div class='form-button'>
-					<button type='button' onclick='Gravar()'>Entrar</button>
-					</div>
-				</form>
-				<div id='resposta'>
-				</div>
-			</div>
-		</div>
-	</body>
+    <head>
+        <meta charset="UTF-8">
+        <script src="index.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/fontawesome-free-web/css/all.css">
+    </head>
+    <body>
+        <div class="pagina">
+            <div class="corpo">
+                <div class="cadastro">
+                    <form id="form_cadastro">
+                        <div class="titulo_cadastro">
+                            <h1>Cadastrar Usuario</h1>
+                        </div>
+                        <br>
+                        <input type="text" required class="input_cadastro" id="email" placeholder="Digite o email" name="email">
+                        <br>
+                        <input type="text" class="input_cadastro" id="username" placeholder="Digite o username" name="username">
+                        <br>
+                        <input type="password" class="input_cadastro" id="senha1" placeholder="Digite a senha" name="senha1">
+                        <br>
+                        <input type="password" class="input_cadastro" id="senha2" placeholder="Confirme a senha" name="senha2">
+                        <br>
+                        <button type="button" onclick="cadastrar()">Cadastrar</button>
+                        <br>
+			<br>
+			<p id='Link'>Já tem cadastro? <a href='../index.html' id='Link'>Log In</a></p>
+                    </form>
+                </div>
+                <div class="vetor">
+                    <img src="fotos/player.png" alt="">
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

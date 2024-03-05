@@ -12,23 +12,22 @@
                 <div class="cadastro">
                     <form id="form_cadastro">
                         <div class="titulo_cadastro">
-                            <h1>Cadastrar usuario</h1>
+                            <h1>Autenticação</h1>
                         </div>
                         <br>
-                        <input type="text" required class="input_cadastro" id="nome" placeholder="Digite o email" name="nome">
+                        <input type="text" class="input_cadastro" id="username" placeholder="Digite o username" name="preco">
                         <br>
-                        <input type="text" class="input_cadastro" id="preco" placeholder="Digite o username" name="preco">
+                        <input type="password" class="input_cadastro" id="senha" placeholder="Digite a senha" name="preco">
                         <br>
-                        <input type="password" class="input_cadastro" id="preco" placeholder="Digite a senha" name="preco">
+                        <button type="button" onclick="Autentica()">Autenticar</button>
                         <br>
-                        <input type="password" class="input_cadastro" id="preco" placeholder="Confirme a senha" name="preco">
-                        <br>
-                        <button type="button" onclick="cadastrar()">Cadastrar</button>
-                        <br>
-			<a href='paginas/cadastra.html'>Autenticação</a>
+			<br>
+			<p id='Link'>Não tem cadastro? <a href='paginas/cadastra.html' id='Link'>Sign Up</a></p>
+			<br>
+			<p id='Link'>Esqueceu a senha? <a href='paginas/recuperar.html' id='Link'>Recuperar Senha</a></p>
                     </form>
                 </div>
-                <div class="vetor">
+		<div class="vetor">
                     <img src="fotos/player.png" alt="">
                 </div>
             </div>
