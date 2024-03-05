@@ -1,17 +1,9 @@
 /* Color Theme Swatches in Hex */
-<<<<<<< HEAD
-.alp-impressions-XXXI-1-hex { color: #F27E9D; }
-.alp-impressions-XXXI-2-hex { color: #402B38; }
-.alp-impressions-XXXI-3-hex { color: #8553A6; }
-.alp-impressions-XXXI-4-hex { color: #71498C; }
-.alp-impressions-XXXI-5-hex { color: #BC91D9; }
-=======
 .alp-impressions-XXXI-1-hex { color: #F27E9D; } /* rosa */
 .alp-impressions-XXXI-2-hex { color: #402B38; } /* rosa bem escuro */
 .alp-impressions-XXXI-3-hex { color: #8553A6; } /* roxo */
 .alp-impressions-XXXI-4-hex { color: #71498C; } /* roxo mais escuro */
 .alp-impressions-XXXI-5-hex { color: #BC91D9; } /* lilas */
->>>>>>> c54bfc9 (Atualização das cores das paginas e inversão das paginas cadastra e autentica, cadastra tava autenticando e autentica estava cadastrando)
 
 /* Color Theme Swatches in RGBA */
 .alp-impressions-XXXI-1-rgba { color: rgba(242, 125, 156, 1); }
