@@ -9,4 +9,6 @@ CREATE TABLE users (
     otp VARCHAR(100)
 );
 
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+
 exit;
