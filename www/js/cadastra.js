@@ -1,24 +1,31 @@
 function Cadastrar(){
 	var senha1 = document.getElementById('senha1').value;
 	var senha2 = document.getElementById('senha2').value;
+	var email = document.getElementById('email').value;
 
+	alert(email);
 	const regex0 = /\W|_/;
 	const regex1 = /[A-Z]/;
 	const regex2 = /[0-9]/;
 	const regex3 = /[a-z]/;
+	const regex4 = /.*@.*\..*/;
 
-	if (senha1 == senha2) {
-		if ( (regex0.test(senha1)) && (regex1.test(senha1)) && (regex2.test(senha1)) && (regex3.test(senha1)) ){
-			if (senha1.length >8) {
-				CadastrarTudo();
+	if (regex4.test(email)) {
+		if (senha1 == senha2) {
+			if ( (regex0.test(senha1)) && (regex1.test(senha1)) && (regex2.test(senha1)) && (regex3.test(senha1)) ){
+				if (senha1.length >8) {
+					CadastrarTudo();
+				}else{
+					alert("A senha deve ter no minimo 9 caracteres");
+				}
 			}else{
-				alert("A senha deve ter no minimo 9 caracteres");
+				alert("Tenha no minimo um: Caractere especial, letra G e P, e numero");
 			}
-		}else{
-			alert("Tenha no minimo um: Caractere especial, letra G e P, e numero");
+		}else {
+			alert("ERRO: As duas senhas não batem");
 		}
 	}else {
-		alert("ERRO: As duas senhas não batem");
+		alert("ERRO:email fora do padrao");
 	}
 }
 
