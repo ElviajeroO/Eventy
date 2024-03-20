@@ -3,7 +3,6 @@ function Cadastrar(){
 	var senha2 = document.getElementById('senha2').value;
 	var email = document.getElementById('email').value;
 
-	alert(email);
 	const regex0 = /\W|_/;
 	const regex1 = /[A-Z]/;
 	const regex2 = /[0-9]/;
