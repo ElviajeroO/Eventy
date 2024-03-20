@@ -3,6 +3,9 @@ function Cadastrar(){
 	var senha2 = document.getElementById('senha2').value;
 	var email = document.getElementById('email').value;
 
+	var form = document.getElementById('form_cadastro');
+	var dados = new FormData(form);
+
 	const regex0 = /\W|_/;
 	const regex1 = /[A-Z]/;
 	const regex2 = /[0-9]/;
@@ -30,11 +33,16 @@ function Cadastrar(){
 
 async function CadastrarTudo(){
 	alert("chegamos ai fim");
+	var s1 = CryptoJS.SHA256(document.getElementById("senha1").value);
+	var s2 = CryptoJS.SHA256(document.getElementById('senha2').value);	
 	var form = document.getElementById('form_cadastro');
-		var dados = new FormData(form);
-	
-		var promise = await fetch('../php/cadastra.php',{
-			method:'POST',
-			body:dados
-		});
+	var dados = new FormData(form);
+
+	dados.append('senha', s1.toString(CryptoJS.enc.Base64));
+
+	var promise = await fetch('../php/cadastra.php',{
+		method:'POST',
+		body:dados
+	});
 }
+
