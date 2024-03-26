@@ -33,3 +33,11 @@ porta:3306
 
 Isso obviamente é um problema *GRITANTE* e deve ser arrumado breve, com a
 utilização de um banco de senhas ou algo similar.
+
+## Informações de confirmação do banco
+
+Campo "codconfirmacao":
+    Campo para preenchimento com o código aleatório de 4 dígitos gerado pelo PHP. Deve ser utilizado na confirmação do e-mail.
+
+Campo "confirmado":
+    Campo para verificar se a conta foi confirmada ou não. Não permitir o login caso seja 0. Fazer a troca após a confirmação para 1.
