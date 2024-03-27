@@ -1,5 +1,5 @@
 async function Autentica(){
-	var s1 = CryptoJS.SHA256(document.getElementById('senha'));
+	var s1 = CryptoJS.SHA256(document.getElementById('senha').value);
 	
 	var form = document.getElementById('form_cadastro');
 	var dados = new FormData(form);
