@@ -3,8 +3,7 @@
 	$senha = $_POST['senha'];
 
 	$connection = mysqli_connect('127.0.0.1:3306', 'root', 'root', 'web');
-	$query = "SELECT senha FROM users WHERE email = '$email' and senha = '$senha'";
-	
+	$query = "SELECT senha FROM users WHERE email = '$email' and senha = '$senha' and confirmado = 1";
 	$resultado = mysqli_query($connection, $query);
 	
 	$res =  mysqli_num_rows($resultado);
