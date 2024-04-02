@@ -5,7 +5,7 @@ async function Autentica(){
 	var dados = new FormData(form);
 	dados.append('senha', s1.toString(CryptoJS.enc.Base64));
 
-	var promise = await fetch('php/autentica.php',{
+	var promise = await fetch('../php/autentica.php',{
 		method:'POST',
 		body:dados
 	});
