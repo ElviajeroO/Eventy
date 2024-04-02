@@ -11,5 +11,5 @@ services:
      networks:
        - default
      volumes:
-       - ./www:/www
+       - ./:/www
      restart: always
