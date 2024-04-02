@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+        <script src="../js/cadastra.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/cadastro.css">
+        <link rel="stylesheet" href="../css/fontawesome-free-web/css/all.css">
+    </head>
+    <body>
+        <div class="pagina">
+            <div class="corpo">
+                <div class="cadastro">
+                    <form id="form_cadastro">
+                        <div class="titulo_cadastro">
+                            <h1>Insira o código de autenticação</h1>
+                        </div>
+				<br>
+        	                <input type="text" required class="input_cadastro" id="codconfirmacao" placeholder="Digite seu código de verificação" name="codconfimação">
+        	                <br>
+				<br>
+        	                <button type="button" onclick="autentica()">Autenticar</button>
+				<br>
+				<br>
+				<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Log In</a></p>
+                    </form>
+                </div>
+                <div class="vetor">
+                    <img src="fotos/player.png" alt="">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
