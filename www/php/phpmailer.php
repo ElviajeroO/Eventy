@@ -1,11 +1,12 @@
 <?php
-
+    //require 'mailer/PHMailerAutoload.php';
+    
     use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exceptio;
+    use PHPMailer\PHPMailer\Exception;
 
-    require 'PHPMailer-master/src/Exceptio.php';
-    require 'PHPMailer-master/src/PHPMailer.php';
-    require 'PHPMailer-master/src/SMTP.php';
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/SMTP.php';
 
     $mail = new PHPMailer();
 
@@ -16,14 +17,15 @@
     $mail->SMTPAuth= true;
     $mail->SMTPSecure= 'ssl';
     $mail->Host= 'smtp.gmail.com';
-    $mail->Port= '465';
+    $mail->Port= 465;
 
     $mail->Username= 'mateustrabalhoexp';
     $mail->Password= 'ujjc kllj upvo otag';
-    $mail->setFrom('mateusdaniel2509@gmail.com', 'EMPRESA');
-    $mail->Subject = "SEXOOOOOOOOOOOOO";
+    $mail->setFrom('mateustrabalhoexp@gmail.com', 'EMPRESA');
     
-    $mail->addAddress('mateustrabalhoexp@gmail.com', '');
+    $mail->addAddress('mateusdaniel2509@gmail.com', '');
+    $mail->Subject = "SEXOOOOOOOOOOOOO";
+
     $mail->msgHTML("Mensagem");
 
     $mail->send();
