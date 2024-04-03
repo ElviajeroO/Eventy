@@ -81,7 +81,7 @@
     justify-content: space-around;
 }
 
-.cadastro {
+#cadastro {
     padding-bottom: 5%;
 }
 
@@ -142,7 +142,7 @@
     background-color: #d9d9d9;
 }
 
-.cadastro button {
+#cadastro button {
     font-family: 'Arial';
     color: #9c9c9c;
     justify-content: space-between;
@@ -159,7 +159,7 @@
     border: 1px solid #2d2828;
 }
 
-.cadastro button:hover {
+#cadastro button:hover {
     background-color: #d9d9d9;
 }
 

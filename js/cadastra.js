@@ -1,8 +1,7 @@
 function Cadastrar(){
 	var senha1 = document.getElementById('senha1').value;
 	var senha2 = document.getElementById('senha2').value;
-	var email = document.getElementById('email').value;
-
+	email = document.getElementById('email').value;
 	var form = document.getElementById('form_cadastro');
 	var dados = new FormData(form);
 
@@ -32,7 +31,6 @@ function Cadastrar(){
 }
 
 async function CadastrarTudo(){
-	alert("chegamos ai fim");
 	var s1 = CryptoJS.SHA256(document.getElementById("senha1").value);
 	var s2 = CryptoJS.SHA256(document.getElementById('senha2').value);	
 	var form = document.getElementById('form_cadastro');
@@ -41,6 +39,35 @@ async function CadastrarTudo(){
 	dados.append('senha', s1.toString(CryptoJS.enc.Base64));
 
 	var promise = await fetch('../php/cadastra.php',{
+		method:'POST',
+		body:dados
+	});
+
+	var card =`	
+                    <form id="form_cadastro">
+                        <div class="titulo_cadastro">
+                            <h1>Insira o código de autenticação</h1>
+                        </div>
+				<br>
+        	                <input type="text" required class="input_cadastro" id="codconfirmacao" placeholder="Digite seu código de verificação" name="codconfimacao">
+        	                <br>
+				<br>
+        	                <button type="button" onclick="autentica()">Autenticar</button>
+				<br>
+				<br>
+				<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Log In</a></p>
+                    </form>`
+
+	document.getElementById('cadastro').innerHTML = card;
+}
+
+async function autentica(){
+
+	var form = document.getElementById('form_cadastro');
+	var dados = new FormData(form);
+	dados.append('email', email);
+
+	var promise = await fetch('../php/codconfirma.php',{
 		method:'POST',
 		body:dados
 	});
