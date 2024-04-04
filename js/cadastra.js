@@ -1,3 +1,5 @@
+var email;
+
 function Cadastrar(){
 	var senha1 = document.getElementById('senha1').value;
 	var senha2 = document.getElementById('senha2').value;
@@ -44,7 +46,7 @@ async function CadastrarTudo(){
 	});
 
 	var card =`	
-                    <form id="form_cadastro">
+                    <form id="form_cadastro2">
                         <div class="titulo_cadastro">
                             <h1>Insira o código de autenticação</h1>
                         </div>
@@ -62,10 +64,15 @@ async function CadastrarTudo(){
 }
 
 async function autentica(){
+	var codigo = document.getElementById("codconfirmacao").value;
 
-	var form = document.getElementById('form_cadastro');
+	var form = document.getElementById('form_cadastro2');
 	var dados = new FormData(form);
+	
 	dados.append('email', email);
+
+	dados.append('codconfirmacao', codigo);
+
 
 	var promise = await fetch('../php/codconfirma.php',{
 		method:'POST',
