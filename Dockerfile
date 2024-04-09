@@ -38,6 +38,22 @@ RUN curl -Lo xampp-linux-installer.run $XAMPP_URL && \
   # Allow root login via password
   sed -ri 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 
+COPY ./composer.json /www/
+COPY ./index.html /www/
+COPY ./paginas/ /www/paginas/
+COPY ./css/ /www/css/
+COPY ./js/ /www/js/
+COPY ./php/ /www/php/
+
+RUN cd /www/ && \
+	ln -s /opt/lampp/bin/php /usr/local/bin/php && \
+	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+	php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+	php composer-setup.php && \
+	php -r "unlink('composer-setup.php');" && \
+	cp composer.phar /usr/local/bin/composer && \
+	COMPOSER_ALLOW_SUPERUSER=1 composer install -n
+
 # copy supervisor config file to start openssh-server
 COPY supervisord-openssh-server.conf /etc/supervisor/conf.d/supervisord-openssh-server.conf
 
