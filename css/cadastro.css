@@ -1,20 +1,8 @@
-* {
+	* {
     margin: 0;
     padding: 0;
     font-family: serif;
     overflow: hidden;
-}
-
-.cabecalho {
-    background-image: linear-gradient(to right, rgb(85 104 235 / 88%), #b700ff); 
-    color: #fff; 
-    display: flex;
-    color: #fff;
-    height: 130px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 
 .logo{

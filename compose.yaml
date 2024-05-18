@@ -10,6 +10,6 @@ services:
        - "41063:3306"
      networks:
        - default
-       #volumes:
-       #  - ./:/www
+     volumes:
+       - ./:/www
      restart: always

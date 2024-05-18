@@ -1,0 +1,35 @@
+.cabecalho{
+	width: 100%;
+	height:60px;
+	display: flex;
+    	background-color: #402B38; 
+}
+.name{
+	width:10%;
+	height:100%;
+	margin-right:40%;
+	display:flex;
+	align-items:center;
+	margin-left:15px;
+	justify-content:left;
+	color:#BC91D9;
+}
+.links{
+	width:50%;
+	height:100%;
+	display:flex;
+	align-items:center;
+	justify-content:space-around;
+}
+
+.links a{
+	text-decoration:none;
+}
+
+.links a:hover{
+	color:#BC91D9;
+}
+
+.links a:visited{
+	color:#BC91D9;
+}

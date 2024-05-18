@@ -1,5 +1,22 @@
 var email;
 
+window.onload = function pagina(){
+	var card = `
+		<div class="cabecalho">
+			<div class="name">
+				<h1>Eventy</h1>
+			</div>
+			<div class="bar">
+				<input type="text" placeholder="Nome do evento"></input>
+			</div>
+			<div class="links">
+					<a href="cadastra.html">Cadastrar</a>
+					<a href="autentica.html">Entrar</a>
+			</div>
+		</div>`;
+	
+	document.getElementById("cabecalho").innerHTML = card;
+}
 function Cadastrar(){
 	var senha1 = document.getElementById('senha1').value;
 	var senha2 = document.getElementById('senha2').value;
