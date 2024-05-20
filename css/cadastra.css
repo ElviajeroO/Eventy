@@ -1,0 +1,14 @@
+.cadastra{
+	text-align:center;
+}
+.cadastra h1{
+	color:#BC91D9;
+}
+.cadastra p{
+	color:white;
+}
+.cadastra a{
+	color:white;
+}
+.cadastra a:hover{
+	color:#BC91D9;

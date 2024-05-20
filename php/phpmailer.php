@@ -1,5 +1,5 @@
 <?php
-    //require 'mailer/PHMailerAutoload.php';
+    require 'mailer/PHMailerAutoload.php';
     
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
@@ -24,7 +24,7 @@
         $mail->Password= 'ujjc kllj upvo otag';
         $mail->setFrom('mateustrabalhoexp@gmail.com', 'EMPRESA');
         
-        $mail->addAddress($email, '');
+        $mail->addAddress($email);
         $mail->Subject = "Código de Autenticação";
 
         $mail->msgHTML($codigo_aut);

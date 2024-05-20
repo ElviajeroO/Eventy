@@ -1,7 +1,8 @@
 var email;
 
-window.onload = function pagina(){
-	var card = `
+window.onload = async function pagina(){
+	
+	var cabecalho = `
 		<div class="cabecalho">
 			<div class="name">
 				<h1>Eventy</h1>
@@ -15,8 +16,26 @@ window.onload = function pagina(){
 			</div>
 		</div>`;
 	
-	document.getElementById("cabecalho").innerHTML = card;
+	document.getElementById("cabecalho").innerHTML = cabecalho;
+	var promise = await fetch('../php/session.php',{
+		method:'GET'
+	});
+
+	var cod = await promise.json();
+	
+	if (cod == 1){
+		var teste = `
+			<div class="cadastra">
+				<h1> Usuário já autenticado</h1>
+				</br>
+				<p>Por favor prossiga para a <a href="../index.html">pagina Inicial</a></p>
+			</div>`;
+
+		document.getElementById("corpo").innerHTML = teste;
+	}
+
 }
+
 function Cadastrar(){
 	var senha1 = document.getElementById('senha1').value;
 	var senha2 = document.getElementById('senha2').value;

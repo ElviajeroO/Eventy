@@ -1,0 +1,15 @@
+.autenticado{
+	text-align:center;
+}
+.autenticado h1{
+	color:#BC91D9;
+}
+.autenticado p{
+	color:white;
+}
+.autenticado a{
+	color:white;
+}
+.autenticado a:hover{
+	color:#BC91D9;
+}

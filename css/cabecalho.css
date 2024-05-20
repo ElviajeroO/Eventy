@@ -13,6 +13,15 @@
 	justify-content:left;
 	color:#BC91D9;
 }
+.name a{
+	text-decoration: none;
+}
+.name a:hover{
+	color:#BC91D9;
+}
+.name a:visited{
+	color:#BC91D9;
+}
 .bar{
 	width:40%;
 	height:100%;

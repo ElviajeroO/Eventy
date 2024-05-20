@@ -1,5 +1,6 @@
-window.onload = function pagina(){
-	var card = `
+window.onload = async function pagina(){
+	
+	var cabecalho = `
 		<div class="cabecalho">
 			<div class="name">
 				<h1>Eventy</h1>
@@ -13,7 +14,24 @@ window.onload = function pagina(){
 			</div>
 		</div>`;
 	
-	document.getElementById("cabecalho").innerHTML = card;
+	document.getElementById("cabecalho").innerHTML = cabecalho;
+	var promise = await fetch('../php/session.php',{
+		method:'GET'
+	});
+
+	var cod = await promise.json();
+	
+	if (cod == 1){
+		var teste = `
+			<div class="autenticado">
+				<h1> Usuário já autenticado</h1>
+				</br>
+				<p>Por favor prossiga para a <a href="../index.html">pagina Inicial</a></p>
+			</div>`;
+
+		document.getElementById("corpo").innerHTML = teste;
+	}
+
 }
 
 async function Autentica(){
