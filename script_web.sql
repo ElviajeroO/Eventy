@@ -8,6 +8,7 @@ CREATE TABLE users (
     senha VARCHAR(100) NOT NULL,
     confirmado TINYINT DEFAULT 0,
     codconfirmacao smallint unsigned,
+    codsenha smallint unsigned,
     otp VARCHAR(100)
 );
 

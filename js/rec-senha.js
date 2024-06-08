@@ -18,26 +18,47 @@ window.onload = function pagina(){
 }
 
 async function Trocar(){
-	var senha1 = CryptoJS.SHA256(document.getElementById('senha1').value);
-	var senha2 = CryptoJS.SHA256(document.getElementById('senha2').value);
 	email = document.getElementById('email').value;
 	var form = document.getElementById('form_cadastro');
 	var dados = new FormData(form);
-	
-	dados.append('senha1', senha1.toString(CryptoJS.enc.Base64));
-	dados.append('senha2', senha2.toString(CryptoJS.enc.Base64));
 
-	var promise = await fetch('../php/trc-senha.php',{
+	var promise = await fetch('../php/rec-senha.php', {
 		method:'POST',
-		body:dados
+		body: dados
 	});
 
 	var resposta = await promise.json();
 
 	await window.alert(resposta[1]);
 
-	if(resposta[0] == '1'){
-		var form = `
+	if(resposta[0] == "1"){
+		var card = `
+                        <input type="text" class="input_cadastro" id="codigo" name="codigo" placeholder="Digite o código de autenticação">
+                        <br>
+                        <button type="button" onclick="Codigo()">Enviar</button>
+                        <br>`;
+
+		document.getElementById('form_cadastro').innerHTML = card;
+	}
+}
+
+async function Codigo(){
+	
+	var form = document.getElementById('form_cadastro');
+	var dados = new FormData(form);
+	dados.append('email', email);
+
+	var promise = await fetch('../php/ver-codigo.php', {
+		method:'POST',
+		body: dados
+	});
+
+	var resposta = await promise.json();
+
+	window.alert(resposta[1]);
+
+	if(resposta[0] == "1"){
+		var card=` 
 			<br>
                         <input type="password" class="input_cadastro" id="senha1" placeholder="Digite a senha nova">
                         <br>
@@ -45,11 +66,9 @@ async function Trocar(){
                         <br>
                         <button type="button" onclick="Gravar()">Trocar</button>
                         <br>`;
-
-		document.getElementById('form_cadastro').innerHTML = form;
+		document.getElementById('form_cadastro').innerHTML = card;
 	}
 }
-
 async function Gravar(){
 	var senha1 = CryptoJS.SHA256(document.getElementById('senha1').value);
 	var senha2 = CryptoJS.SHA256(document.getElementById('senha2').value);
@@ -61,7 +80,7 @@ async function Gravar(){
 	dados.append('senha2', senha2.toString(CryptoJS.enc.Base64));
 	dados.append('email', email);
 
-	var promise = await fetch('../php/rec-senha-gravar.php',{ //TODO
+	var promise = await fetch('../php/rec-senha-gravar.php',{
 		method:'POST',
 		body:dados
 	});
