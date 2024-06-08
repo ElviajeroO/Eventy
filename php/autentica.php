@@ -31,8 +31,8 @@
 	$res =  mysqli_num_rows($resultado);
 
 	if ($res == 1){
-		$_SESSION["autenticado"] = 1;
-		echo $_SESSION["autenticado"];
+		$_SESSION["ID"] = 1;
+		$_SESSION["nome"] = $email;
 		#mandar($email,$secret);
 		}
 	else {

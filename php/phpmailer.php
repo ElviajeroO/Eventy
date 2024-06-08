@@ -1,5 +1,6 @@
 <?php
-    require 'mailer/PHMailerAutoload.php';
+
+    #require 'mailer/PHMailerAutoload.php';
     
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;

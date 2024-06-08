@@ -47,4 +47,6 @@ async function Autentica(){
 	});
 	console.log(s1.toString(CryptoJS.enc.Base64));
 
+	window.location.reload();
+
 }

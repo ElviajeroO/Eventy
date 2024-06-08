@@ -1,12 +1,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=2.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <link rel="stylesheet" href="../css/index.css">
         <link rel="stylesheet" href="../css/cabecalho.css">
         <link rel="stylesheet" href="../css/fontawesome-free-web/css/all.css">
-	<script defer src="../js/rec-senha.js"></script>
+	<script defer src="../js/trc-senha.js"></script>
     </head>
     <body>
 	<header id="cabecalho">
@@ -14,21 +14,21 @@
         <div class="pagina">
             <div class="corpo">
                 <div class="cadastro">
+                    <div class="titulo_cadastro">
+                        <h1>Nova Senha</h1>
+                    </div>
                     <form id="form_cadastro">
-                        <div class="titulo_cadastro">
-                            <h1>Nova Senha</h1>
-                        </div>
                         <br>
-                        <input type="password" required class="input_cadastro" id="senha0" placeholder="Digite a senha antiga" name="senha0">
+                        <input type="text" class="input_cadastro" id="email" placeholder="Digite o seu Email" name="email">
                         <br>
-                        <input type="password" class="input_cadastro" id="senha1" placeholder="Digite a senha nova" name="senha1">
+                        <input type="password" class="input_cadastro" id="senha1" placeholder="Digite a senha antiga">
                         <br>
-                        <input type="password" class="input_cadastro" id="senha2" placeholder="Confirme a senha nova" name="senha2">
+                        <input type="password" class="input_cadastro" id="senha2" placeholder="Confirme a senha antiga">
                         <br>
                         <button type="button" onclick="Trocar()">Trocar</button>
                         <br>
-			            <br>
-			<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Log In</a></p>
+			<br>
+			<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Entrar</a></p>
                     </form>
                 </div>
                 <div class="vetor">
