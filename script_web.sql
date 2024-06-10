@@ -9,6 +9,7 @@ CREATE TABLE users (
     confirmado TINYINT DEFAULT 0,
     codconfirmacao smallint unsigned,
     codsenha smallint unsigned,
+    cookie varchar(100),
     otp VARCHAR(100)
 );
 

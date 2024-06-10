@@ -21,6 +21,8 @@ window.onload = async function pagina(){
 	});
 
 	var cod = await promise.json();
+
+	console.log(cod);
 	
 	if (cod == 1){
 		var teste = `
@@ -79,9 +81,9 @@ async function FA(){
 	
 	var resposta = await promise.json();
 
+	console.log(resposta);
+
 	if(resposta[0] == '1'){
 		await window.alert(resposta[1]);
-
-		window.location.href = '../index.html';
 	}
 }

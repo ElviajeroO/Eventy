@@ -14,6 +14,7 @@
 	
 	$res =  mysqli_num_rows($resultado);
 
+
 	if ($res == 1){
 		array_push($msg, "1");
 		array_push($msg, "usuario correto");

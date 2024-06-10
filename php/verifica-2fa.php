@@ -25,11 +25,16 @@
 
 	$checkResult = $authenticator->verifyCode($secret, $otp, 2);    
 	
+    	$codigo_aut = abs(random_int(-9999, 9999));
+
 	if ($checkResult) 
 	{
 		array_push($msg, '1');
 	       	array_push($msg, 'autenticado');	
-	    
+		setcookie("Eventy", $codigo_aut, time() + (300), "/");
+		$query = "UPDATE users SET cookie='$codigo_aut' where email='$email'and confirmado=1";
+		mysqli_query($connection, $query);
+		array_push($msg, $_COOKIE["Eventy"]);
 	} else {
 	   	array_push($msg, '0');
 	       	array_push($msg, 'codigo errado');	
