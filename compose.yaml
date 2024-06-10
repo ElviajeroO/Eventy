@@ -3,13 +3,13 @@ services:
      build:
        context: .
        args:
-         XAMPP_URL: "https://ufpr.dl.sourceforge.net/project/xampp/XAMPP%20Linux/8.2.4/xampp-linux-x64-8.2.4-0-installer.run"
+         XAMPP_URL: "https://razaoinfo.dl.sourceforge.net/project/xampp/XAMPP%20Linux/8.2.4/xampp-linux-x64-8.2.4-0-installer.run?viasf=1"
      ports:
        - "41061:22"
        - "41062:80"
        - "41063:3306"
      networks:
        - default
-     volumes:
-       - ./:/www
+         #volumes:
+         #  - ./:/www
      restart: always
