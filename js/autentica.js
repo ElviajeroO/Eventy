@@ -1,3 +1,4 @@
+var email;
 window.onload = async function pagina(){
 	
 	var cabecalho = `
@@ -36,6 +37,7 @@ window.onload = async function pagina(){
 
 async function Autentica(){
 	var s1 = CryptoJS.SHA256(document.getElementById('senha').value);
+	email = document.getElementById('email').value;
 	
 	var form = document.getElementById('form_cadastro');
 	var dados = new FormData(form);
@@ -45,8 +47,41 @@ async function Autentica(){
 		method:'POST',
 		body:dados
 	});
-	console.log(s1.toString(CryptoJS.enc.Base64));
 
-	window.location.reload();
+	var resposta = await promise.json();
 
+	window.alert(resposta[1]);
+
+	if(resposta[0] == "1"){
+		var card = `
+			<div class='titulo_cadastro'>
+				<h1> Digite o código do Google Authenticator</h1>
+			</div>
+			<br>
+                        <input type="text" class="input_cadastro" id="otp" name='otp' placeholder="Digite o codigo do authenticador">
+                        <br>
+                        <button type="button" onclick="FA()">Autenticar</button>
+                        <br>`;
+		
+		document.getElementById('form_cadastro').innerHTML = card;
+	}
+}
+
+async function FA(){
+	var form = document.getElementById('form_cadastro');
+	var dados = new FormData(form);
+	dados.append('email', email);
+
+	var promise = await fetch('../php/verifica-2fa.php', {
+		method:'POST',
+		body:dados
+	});
+	
+	var resposta = await promise.json();
+
+	if(resposta[0] == '1'){
+		await window.alert(resposta[1]);
+
+		window.location.href = '../index.html';
+	}
 }

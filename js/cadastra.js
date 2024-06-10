@@ -81,20 +81,27 @@ async function CadastrarTudo(){
 		body:dados
 	});
 
+	var resposta = await promise.json();
+
+	console.log(resposta);
+
 	var card =`	
-                    <form id="form_cadastro2">
+                    <form id="form_cadastro">
                         <div class="titulo_cadastro">
                             <h1>Insira o código de autenticação</h1>
                         </div>
 				<br>
-        	                <input type="text" required class="input_cadastro" id="codconfirmacao" placeholder="Digite seu código de verificação" name="codconfimacao">
+        	                <input type="text" required class="input_cadastro" id="codconfirmacao" placeholder="Digite seu código de autenticação" name="codconfimacao">
         	                <br>
 				<br>
         	                <button type="button" onclick="autentica()">Autenticar</button>
 				<br>
 				<br>
-				<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Log In</a></p>
-                    </form>`
+				<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Entrar</a></p>
+                    </form>
+               	    <div class="img">
+               	        <img src="${resposta[1]}" alt="">
+               	    </div>`;
 
 	document.getElementById('cadastro').innerHTML = card;
 }
@@ -102,7 +109,7 @@ async function CadastrarTudo(){
 async function autentica(){
 	var codigo = document.getElementById("codconfirmacao").value;
 
-	var form = document.getElementById('form_cadastro2');
+	var form = document.getElementById('form_cadastro');
 	var dados = new FormData(form);
 	
 	dados.append('email', email);
@@ -114,5 +121,10 @@ async function autentica(){
 		method:'POST',
 		body:dados
 	});
+
+	console.log(await promise.json());
+
+	//TODO adicionar um resposta para avisar o usuario se deu certo ou não
+
 }
 
