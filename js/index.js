@@ -17,12 +17,43 @@ window.onload = async function pagina(){
 					<input type="text" placeholder="Nome do evento"></input>
 				</div>
 				<div class="links">
-						<a href="./paginas/cadastra.html">Cadastrar</a>
-						<a href="./paginas/perfil.html">Perfil</a>
+						<a href="paginas/cadastra.html">Cadastrar</a>
+						<a href="paginas/eventos-inscritos.html">Meus Eventos</a>
 				</div>
 			</div>`;
 		
 		document.getElementById("cabecalho").innerHTML = card;
+		var promise = await fetch("php/select.php", {
+			method: 'GET',
+		});
+		 
+		var dados = await promise.json();
+		user = dados;
+		console.log(dados);
+
+		for(var i = 0; i < dados.length; i++){
+			var card = 
+			`<div class='card'>
+				<div class='card-nome'>
+					<a>${dados[i].nome}</a>
+				</div>
+				<div class='card-imagem'>
+					<img src='upload/${dados[i].nome}'></img>
+				</div>
+				<div class='card-adic'>
+					<div class='card-cor'><a>Nmax: ${dados[i].preco}</a></div>
+					<div class='card-tam'><a>${dados[i].tamanho}</a></div>
+				</div>
+				<div class='card-valor'>
+					<a>Local: ${dados[i].cor}</a>
+				</div>
+				<div class='card-acao' onclick='AddCarrinho(${dados[i].id})'>
+					<a>Inscrever no evento</a>
+				</div>
+			</div>`
+			
+			document.getElementById('produtos').innerHTML += card;
+		}
 	}else{
 
 		var card = `
@@ -34,11 +65,60 @@ window.onload = async function pagina(){
 					<input type="text" placeholder="Nome do evento"></input>
 				</div>
 				<div class="links">
-						<a href="./paginas/cadastra.html">Cadastrar</a>
-						<a href="./paginas/autentica.html">Entrar</a>
+						<a href="paginas/cadastra.html">Cadastrar</a>
+						<a href="paginas/autentica.html">Entrar</a>
 				</div>
 			</div>`;
 		
 		document.getElementById("cabecalho").innerHTML = card;
+		var promise = await fetch("php/select.php", {
+			method: 'GET',
+		});
+		 
+		var dados = await promise.json();
+		user = dados;
+		console.log(dados);
+
+		for(var i = 0; i < dados.length; i++){
+			var card = 
+			`<div class='card'>
+				<div class='card-nome'>
+					<a>${dados[i].nome}</a>
+				</div>
+				<div class='card-imagem'>
+					<img src='upload/${dados[i].nome}'></img>
+				</div>
+				<div class='card-adic'>
+					<div class='card-cor'><a>Nmax: ${dados[i].preco}</a></div>
+					<div class='card-tam'><a>${dados[i].tamanho}</a></div>
+				</div>
+				<div class='card-valor1'>
+					<a>Local: ${dados[i].cor}</a>
+				</div>
+			</div>`
+			
+			document.getElementById('produtos').innerHTML += card;
+		}
 	}
+
+
 }
+
+async function AddCarrinho(id){
+
+	var dados = new FormData();
+
+	dados.append('id_produto', id);
+
+	console.log(dados);
+	var promise = await fetch('php/add_carrinho.php', {
+		method:"POST",
+		body: dados
+	});
+	
+	var resposta = await promise.text();
+
+	window.location.reload();
+}
+
+ 

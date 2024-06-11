@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../css/cadastra.css" />
+        <link rel="stylesheet" href="../css/cabecalho.css">
+        <link rel="stylesheet" href="../css/cadastra-evento.css">
+
+		<link rel='stylesheet' href='../css/fontawesome-free-web/css/all.css'>
+		<script defer src="../js/cadastra-evento.js"></script>
+	</head>
+	<body>
+	<header id="cabecalho">
+	</header>
+
+		<div class='div-body' id="corpo">
+			<div class='div-form'>
+				<div class='form-text'>
+					<a>Formulário para cadastro de evento</a>
+				</div>
+				<form id='cadastra-forms'>
+					<div class='form-input'>
+						<input name='nome' type='text' placeholder='Nome do evento'></input>
+						<input name='preco'type='number' placeholder='Digite o numero de pessoas'></input>
+						<input name='cor' type='text' placeholder='Digite o local do evento'></input>
+						<input name='tamanho' type='text' placeholder='Digite uma letra'></input>
+						<label>
+							Imagem Produto
+							<input id='file' type='file'></input>
+						</label>
+					</div>
+					
+					<div class='form-button'>
+					<button type='button' onclick='Gravar()'>Gravar evento</button>
+					</div>
+				</form>
+				<div id='resposta'>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

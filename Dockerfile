@@ -54,6 +54,10 @@ RUN cd /www/ && \
 	cp composer.phar /usr/local/bin/composer && \
 	COMPOSER_ALLOW_SUPERUSER=1 composer install -n
 
+RUN mkdir /www/upload/
+
+RUN chmod -R 777 /www/upload
+
 # copy supervisor config file to start openssh-server
 COPY supervisord-openssh-server.conf /etc/supervisor/conf.d/supervisord-openssh-server.conf
 

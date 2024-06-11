@@ -18,7 +18,7 @@ window.onload = async function pagina(){
 				</div>
 				<div class="links">
 						<a href="cadastra.html">Cadastrar</a>
-						<a href="perfil.html">Perfil</a>
+						<a href="eventos-inscritos.html">Meus Eventos</a>
 				</div>
 			</div>`;
 		
