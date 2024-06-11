@@ -2,7 +2,7 @@ window.onload = async function pagina(){
 
 
 	var promise = await fetch("php/session.php", {
-		method:"GET"
+		method:"POST"
 	});
 
 	var resposta = await promise.json();

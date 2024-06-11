@@ -1,5 +1,5 @@
-
 <?php
+	require "../vendor/autoload.php";
 	include "../php/phpmailer.php";
 	include "../php/pegachave.php";
 
@@ -16,14 +16,15 @@
     	$teste = preg_split("/[;]/",$cp);
 
 	$conn = new PDO("mysql:host=$teste[0];dbname=$teste[3]", $teste[1], $teste[2]);
+	
+    	$codigo_aut = abs(random_int(-9999, 9999));
+	mandar($email, $codigo_aut);
 
 	if(preg_match($pattern, $email)){
-		$codigo = abs(random_int(-9999,9999));
 
-		mandar($email, $codigo);
 		
   		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "UPDATE users SET codsenha='$codigo' where email='$email'";
+		$sql = "UPDATE users SET codsenha='$codigo_aut' where email='$email'";
   		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 
