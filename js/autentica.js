@@ -83,5 +83,7 @@ async function FA(){
 
 	if(resposta[0] == '1'){
 		await window.alert(resposta[1]);
+
+		window.location.href = "../index.html";
 	}
 }

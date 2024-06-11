@@ -13,28 +13,28 @@
 
 	session_start();
 
-	$connection = mysqli_connect('127.0.0.1:3306', 'root', 'root', 'web');
-	$query = "SELECT otp FROM users WHERE email = '$email' and confirmado = 1";
-	$resultado = mysqli_query($connection, $query);
-	
-	while($tourrow = mysqli_fetch_assoc($resultado)){
-		$secret = $tourrow['otp'];	
-	}
+		$connection = mysqli_connect('127.0.0.1:3306', 'root', 'root', 'web');
+		$query = "SELECT otp FROM users WHERE email = '$email' and confirmado = 1";
+		$resultado = mysqli_query($connection, $query);
+		
+		while($tourrow = mysqli_fetch_assoc($resultado)){
+			$secret = $tourrow['otp'];	
+		}
 
 
-	$authenticator = new PHPGangsta_GoogleAuthenticator();
+		$authenticator = new PHPGangsta_GoogleAuthenticator();
 
-	$tolerance = 1;	
+		$tolerance = 1;	
 
-	$checkResult = $authenticator->verifyCode($secret, $otp, 2);    
-	
-	if ($checkResult) 
-	{
+		$checkResult = $authenticator->verifyCode($secret, $otp, 2);    
+		
+		if ($checkResult) 
+		{
 
-		$_SESSION["email"] = $email;
-		$_SESSION["autenticado"] = 1;
+			$_SESSION["email"] = $email;
+			$_SESSION["autenticado"] = 1;
 
-		$id = $_COOKIE["Eventy"];
+		$id = session_id();
 		$query = "UPDATE users SET cookie='$id' where email='$email' and confirmado='1'";
 		mysqli_query($connection, $query);
 
