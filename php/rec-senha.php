@@ -1,6 +1,7 @@
 
 <?php
 	include "../php/phpmailer.php";
+	include "../php/pegachave.php";
 
 	$email = $_POST['email'];
 
@@ -10,12 +11,11 @@
 
 	$json = 0;
 
-	$servername = '127.0.0.1:3306';
-	$username = 'root';
-	$password = 'root';	
-	$dbname = 'web';
+	$cp = extract_from_image("../img/porco.png");
 
-	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    	$teste = preg_split("/[;]/",$cp);
+
+	$conn = new PDO("mysql:host=$teste[0];dbname=$teste[3]", $teste[1], $teste[2]);
 
 	if(preg_match($pattern, $email)){
 		$codigo = abs(random_int(-9999,9999));

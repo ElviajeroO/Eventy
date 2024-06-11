@@ -1,4 +1,6 @@
 <?php
+	include "../php/pegachave.php";
+
 	$codconfirmacao = $_POST['codigo'];
 	$email = $_POST['email'];
 
@@ -6,7 +8,12 @@
 
 	$json = 0;
 
-	$connection = mysqli_connect('127.0.0.1:3306', 'root', 'root', 'web');
+	$cp = extract_from_image("../img/porco.png");
+
+    	$teste = preg_split("/[;]/",$cp);
+
+	$connection = mysqli_connect($teste[0], $teste[1], $teste[2], $teste[3]);
+
 	$query = "SELECT codsenha FROM users WHERE email = '$email'";
 	$resultado = mysqli_query($connection, $query);
 	

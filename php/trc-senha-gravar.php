@@ -1,6 +1,7 @@
 
 <?php
 	include "../php/phpmailer.php";
+	include "../php/pegachave.php";
 
 	$email = $_POST['email'];
 	$senha1 = $_POST['senha1'];
@@ -10,7 +11,11 @@
 	$password = 'root';	
 	$dbname = 'web';
 
-	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+	$cp = extract_from_image("../img/porco.png");
+
+    	$teste = preg_split("/[;]/",$cp);
+
+	$conn = new PDO("mysql:host=$teste[0];dbname=$teste[3]", $teste[1], $teste[2]);
 
 	$pattern = '/.*@.*\..*/';
 

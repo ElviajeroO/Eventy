@@ -1,5 +1,6 @@
 <?php
 	include "../php/phpmailer.php";
+	include "../php/pegachave.php";
 
 	$email = $_POST['email'];
 	$senha1 = $_POST['senha1'];
@@ -14,7 +15,11 @@
 	if(preg_match($pattern, $email)){
 		if($senha1 == $senha1){
     			$codigo_aut = abs(random_int(-9999, 9999));
-			$connection = mysqli_connect('127.0.0.1:3306', 'root', 'root', 'web');
+			$cp = extract_from_image("../img/porco.png");
+
+    			$teste = preg_split("/[;]/",$cp);
+
+			$connection = mysqli_connect($teste[0], $teste[1], $teste[2], $teste[3]);
 			$query = "SELECT senha FROM users WHERE email = '$email' and senha = '$senha1' and confirmado = 1";
 			$resultado = mysqli_query($connection, $query);
 			$res =  mysqli_num_rows($resultado);
