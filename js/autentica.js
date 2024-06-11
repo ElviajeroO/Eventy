@@ -22,9 +22,8 @@ window.onload = async function pagina(){
 
 	var cod = await promise.json();
 
-	console.log(cod);
 	
-	if (cod == 1){
+	if (cod[0] == 1){
 		var teste = `
 			<div class="autenticado">
 				<h1> Usuário já autenticado</h1>
@@ -81,7 +80,6 @@ async function FA(){
 	
 	var resposta = await promise.json();
 
-	console.log(resposta);
 
 	if(resposta[0] == '1'){
 		await window.alert(resposta[1]);

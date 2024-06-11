@@ -85,25 +85,33 @@ async function CadastrarTudo(){
 
 	console.log(resposta);
 
-	var card =`	
-                    <form id="form_cadastro">
-                        <div class="titulo_cadastro">
-                            <h1>Insira o código de autenticação</h1>
-                        </div>
-				<br>
-        	                <input type="text" required class="input_cadastro" id="codconfirmacao" placeholder="Digite seu código de autenticação" name="codconfimacao">
-        	                <br>
-				<br>
-        	                <button type="button" onclick="autentica()">Autenticar</button>
-				<br>
-				<br>
-				<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Entrar</a></p>
-                    </form>
-               	    <div class="img">
-               	        <img src="${resposta[1]}" alt="">
-               	    </div>`;
+	if(resposta[0]=="0"){
+		
+		window.alert(resposta[1]);
 
-	document.getElementById('cadastro').innerHTML = card;
+	}else{
+		var card =`	
+        	            <form id="form_cadastro">
+        	                <div class="titulo_cadastro">
+        	                    <h1>Insira o código de autenticação</h1>
+        	                </div>
+					<br>
+        		                <input type="text" required class="input_cadastro" id="codconfirmacao" placeholder="Digite seu código de autenticação" name="codconfimacao">
+        		                <br>
+					<br>
+        		                <button type="button" onclick="autentica()">Autenticar</button>
+					<br>
+					<br>
+					<p id='Link'>Já tem cadastro? <a href='autentica.html' id='Link'>Entrar</a></p>
+        	            </form>
+        	       	    <div class="img">
+        	       	        <img src="${resposta[1]}" alt="">
+        	       	    </div>`;
+
+		document.getElementById('cadastro').innerHTML = card;
+
+	}
+	
 }
 
 async function autentica(){
@@ -122,9 +130,13 @@ async function autentica(){
 		body:dados
 	});
 
-	console.log(await promise.json());
+	var resposta = await promise.json();
 
-	//TODO adicionar um resposta para avisar o usuario se deu certo ou não
+	await window.alert(resposta[1]);
+
+	if(resposta[0] == "1"){
+		window.location.href = "../index.html";
+	}
 
 }
 
