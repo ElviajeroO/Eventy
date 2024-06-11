@@ -1,37 +1,44 @@
 var email;
 
 window.onload = async function pagina(){
-	
-	var cabecalho = `
-		<div class="cabecalho">
-			<div class="name">
-				<h1>Eventy</h1>
-			</div>
-			<div class="bar">
-				<input type="text" placeholder="Nome do evento"></input>
-			</div>
-			<div class="links">
-					<a href="cadastra.html">Cadastrar</a>
-					<a href="autentica.html">Entrar</a>
-			</div>
-		</div>`;
-	
-	document.getElementById("cabecalho").innerHTML = cabecalho;
 	var promise = await fetch('../php/session.php',{
 		method:'GET'
 	});
 
 	var cod = await promise.json();
 	
-	if (cod == 1){
-		var teste = `
-			<div class="cadastra">
-				<h1> Usuário já autenticado</h1>
-				</br>
-				<p>Por favor prossiga para a <a href="../index.html">pagina Inicial</a></p>
+	if (cod[0] == 1){
+		var cabecalho = `
+			<div class="cabecalho">
+				<div class="name">
+					<h1><a href="../index.html">Eventy</a></h1>
+				</div>
+				<div class="bar">
+					<input type="text" placeholder="Nome do evento"></input>
+				</div>
+				<div class="links">
+						<a href="cadastra.html">Cadastrar</a>
+						<a href="perfil.html">Perfil</a>
+				</div>
 			</div>`;
-
-		document.getElementById("corpo").innerHTML = teste;
+		
+		document.getElementById("cabecalho").innerHTML = cabecalho;
+	}else{
+		var cabecalho = `
+			<div class="cabecalho">
+				<div class="name">
+					<h1><a href="../index.html">Eventy</a></h1>
+				</div>
+				<div class="bar">
+					<input type="text" placeholder="Nome do evento"></input>
+				</div>
+				<div class="links">
+						<a href="cadastra.html">Cadastrar</a>
+						<a href="autentica.html">Entrar</a>
+				</div>
+			</div>`;
+		
+		document.getElementById("cabecalho").innerHTML = cabecalho;
 	}
 
 }
