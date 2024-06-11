@@ -23,12 +23,27 @@
 
 	$connection = mysqli_connect('127.0.0.1:3306', 'root', 'root', 'web');
 
-	$query = "INSERT INTO users (email, senha ,codconfirmacao, otp) VALUES ('$email', '$senha', '$codigo_aut', '$secret')";
+	$query = "SELECT email FROM users WHERE email='$email'";
 
-	mysqli_query($connection, $query);
+	$resultado = mysqli_query($connection, $query);
+	
+	$res =  mysqli_num_rows($resultado);
 
-	array_push($msg, $secret);
-	array_push($msg, $qrCodeUrl);
+	if($res > 0){
+		array_push($msg, "0");
+		array_push($msg, "Email existente");
+
+	}else{
+	
+		$query = "INSERT INTO users (email, senha ,codconfirmacao, otp) VALUES ('$email', '$senha', '$codigo_aut', '$secret')";
+
+		mysqli_query($connection, $query);
+
+		array_push($msg, $secret);
+
+		array_push($msg, $qrCodeUrl);
+	}
+
 
 	$json = json_encode($msg);
 
