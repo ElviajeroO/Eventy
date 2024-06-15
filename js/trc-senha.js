@@ -86,7 +86,7 @@ async function Gravar(){
 	dados.append('senha2', senha2.toString(CryptoJS.enc.Base64));
 	dados.append('email', email);
 
-	var promise = await fetch('../php/rec-senha-gravar.php',{ //TODO
+	var promise = await fetch('../php/trc-senha-gravar.php',{ 
 		method:'POST',
 		body:dados
 	});

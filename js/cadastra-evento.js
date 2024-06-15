@@ -62,10 +62,10 @@ async function Gravar(){
         body: dados
     });
 
-var resposta = await promise.text();
+var resposta = await promise.json();
 
 
-var template = `<a>${resposta}</a>`;
+var template = `<a>${resposta[1]}</a>`;
 
 document.getElementById('resposta').innerHTML = template;
 

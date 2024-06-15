@@ -1,12 +1,14 @@
 <?php 
+	include_once "./banco.php";
 
 	$id = $_POST['id_produto'];
 
-	$connection = mysqli_connect('127.0.0.1:3306', 'root', 'root', 'web');
-	
-	$query = "INSERT INTO carrinho_produto (id_carrinho, quantidade, id_produto) VALUES(1, 1, {$id})";
+	$msg = array();
 
-	mysqli_query($connection, $query);
+	$msg = inscrever_evento($id);
 
-	echo 'Produto Adicionado ao Carrinho';
+	$json = json_encode($msg);
+
+	echo $json;
+
 ?>

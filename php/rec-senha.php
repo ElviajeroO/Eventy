@@ -1,7 +1,5 @@
 <?php
-	require "../vendor/autoload.php";
-	include "../php/phpmailer.php";
-	include "../php/pegachave.php";
+	include_once "./banco.php";
 
 	$email = $_POST['email'];
 
@@ -9,30 +7,13 @@
 
 	$msg = array();
 
-	$json = 0;
-
-	$cp = extract_from_image("../img/porco.png");
-
-    	$teste = preg_split("/[;]/",$cp);
-
-	$conn = new PDO("mysql:host=$teste[0];dbname=$teste[3]", $teste[1], $teste[2]);
-	
     	$codigo_aut = abs(random_int(-9999, 9999));
-	mandar($email, $codigo_aut);
 
 	if(preg_match($pattern, $email)){
-
-		
-  		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "UPDATE users SET codsenha='$codigo_aut' where email='$email'";
-  		$stmt = $conn->prepare($sql);
-		$stmt->execute();
-
-		array_push($msg, "1");
-		array_push($msg, "codigo de autenticação enviado para seu email");
+		$msg = recupera_senha($email, $codigo_aut);
 	}else{
 		array_push($msg, "0");
-		array_push($msg, 'email invalido');
+		array_push($msg, "Email invalido");
 	}
 
 	$json = json_encode($msg);

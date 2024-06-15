@@ -116,7 +116,7 @@ async function AddCarrinho(id){
 		body: dados
 	});
 	
-	var resposta = await promise.text();
+	var resposta = await promise.json();
 
 	window.location.reload();
 }

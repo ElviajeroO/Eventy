@@ -1,0 +1,16 @@
+add_carrinho - feito
+atualiza_qtd - deletado
+autentica - feito
+cadastra - feito
+carrega_carrinho
+codcondirma - feito
+gravar_evento - feito - problema de permição
+rec-senha-gravar - feito
+rec-senha - feito
+select - feito
+session - feito
+trc-senha-gravar - feito
+trc-senha - feito 
+ver-codigo - feito
+verifica-2fa - feito
+verifica_qtd - deletado
