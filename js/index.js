@@ -41,11 +41,11 @@ window.onload = async function pagina(){
 					<img src='upload/${dados[i].nome}'></img>
 				</div>
 				<div class='card-adic'>
-					<div class='card-cor'><a>Nmax: ${dados[i].preco}</a></div>
-					<div class='card-tam'><a>${dados[i].tamanho}</a></div>
+					<div class='card-cor'><a>Nmax: ${dados[i].nmax}</a></div>
+					<div class='card-tam'><a>${dados[i].num}</a></div>
 				</div>
 				<div class='card-valor'>
-					<a>Local: ${dados[i].cor}</a>
+					<a>Local: ${dados[i].local}</a>
 				</div>
 				<div class='card-acao' onclick='AddCarrinho(${dados[i].id})'>
 					<a>Inscrever no evento</a>
@@ -89,11 +89,11 @@ window.onload = async function pagina(){
 					<img src='upload/${dados[i].nome}'></img>
 				</div>
 				<div class='card-adic'>
-					<div class='card-cor'><a>Nmax: ${dados[i].preco}</a></div>
-					<div class='card-tam'><a>${dados[i].tamanho}</a></div>
+					<div class='card-cor'><a>${dados[i].nmax}</a></div>
+						<div class='card-tam'><a>${dados[i].num}</a></div>
 				</div>
 				<div class='card-valor1'>
-					<a>Local: ${dados[i].cor}</a>
+					<a>Local: ${dados[i].local}</a>
 				</div>
 			</div>`
 			
@@ -118,7 +118,6 @@ async function AddCarrinho(id){
 	
 	var resposta = await promise.json();
 
-	window.location.reload();
-}
 
+}
  

@@ -321,7 +321,7 @@
 		return $dados;
 	}
 
-	function gravar_evento($nome, $preco, $cor, $tamanho, $file){ #TODO ERRO DE PERMISSÃO
+	function gravar_evento($nome, $nmax, $local, $file){ #TODO ERRO DE PERMISSÃO
 
 		$msg = array();
 
@@ -331,11 +331,11 @@
 
 		$connection = mysqli_connect($conn[0], $conn[1], $conn[2], $conn[3]);
 		
-		if (empty($nome)||empty($preco)||empty($cor)||empty($tamanho)||empty($file['type'])){
+		if (empty($nome)||empty($nmax)||empty($local)||empty($file['type'])){
 			array_push($msg, "0");
 			array_push($msg, "Preencha todos os campos");	
 		}else{
-			$query = "INSERT INTO produto (nome, preco, cor, tamanho) VALUES('$nome', '$preco', '$cor', '$tamanho')";
+			$query = "INSERT INTO produto (nome, nmax,num, local) VALUES('$nome', '$nmax',0, '$local')";
 			mysqli_query($connection, $query);
 			$novo = "../img/".$nome;
 		    	move_uploaded_file($file["tmp_name"], $novo);
@@ -368,5 +368,27 @@
 
 		return $msg;
 	}
+
+	function carrega_eventos(){
+
+		$msg = array();
+
+		$cp = extract_from_image("../img/porco.png");
+
+		$conn = preg_split("/[;]/", $cp);
+
+		$connection = mysqli_connect($conn[0], $conn[1], $conn[2], $conn[3]);
+	
+    		$select = "SELECT p.*, cp.quantidade, cp.quantidade * p.nmax AS subtotal FROM web.carrinho_produto cp INNER JOIN web.produto p ON cp.id_produto = p.id;";
+
+		$result = mysqli_query($connection, $select);
+
+	   	 while($res = mysqli_fetch_assoc($result)) {
+	   	     array_push($msg, $res);
+	   	 }
+
+		return $msg;
+	}
+
 
 ?>

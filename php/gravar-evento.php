@@ -3,14 +3,13 @@
 	include_once "./banco.php";
 
 	$nome = $_POST['nome'];
-	$preco = $_POST['preco'];
-	$cor = $_POST['cor'];
-	$tamanho = $_POST['tamanho'];
+	$nmax = $_POST['nmax'];
+	$local = $_POST['local'];
 	$file = $_FILES['arquivo'];
 
 	$msg = array();
 
-	$msg = gravar_evento($nome,$preco,$cor,$tamanho,$file);
+	$msg = gravar_evento($nome,$nmax,$local,$file);
 
 	$json = json_encode($msg);
 

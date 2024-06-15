@@ -49,7 +49,7 @@ window.onload = async function(){
 			template = 
 			`<div class="quantidade-input">
 
-				Loc: ${carrinho[i].cor}
+				${carrinho[i].local}
 
 			</div>`
 
@@ -58,7 +58,7 @@ window.onload = async function(){
         	//Template string para o preço do produto
 			template =
 			`<div class="preco-texto">
-				Nmax: ${parseFloat(carrinho[i].preco).toFixed(2)}
+				Nmax: ${parseFloat(carrinho[i].nmax)}
 			</div>`
 
 			document.getElementById('preco').innerHTML += template;
@@ -66,7 +66,7 @@ window.onload = async function(){
 			//Template string para o subtotal da compra
 			template =
 			`<div class="subtotal-texto">
-				Desc: ${carrinho[i].tamanho}
+				Desc: ${carrinho[i].num}
 
 			</div>`
 
