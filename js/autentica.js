@@ -6,24 +6,25 @@ window.onload = async function pagina(){
 	});
 
 	var cod = await promise.json();
-
+	
 	if (cod[0] == 1){
 		var cabecalho = `
-			<div class="cabecalho">
-				<div class="name">
-					<h1><a href="../index.html">Eventy</a></h1>
-				</div>
-				<div class="bar">
-					<input type="text" placeholder="Nome do evento"></input>
-				</div>
-				<div class="links">
-						<a href="cadastra.html">Cadastrar</a>
-							<a href="eventos-inscritos.html">Meus Eventos</a>
+				<div class="cabecalho">
+					<div class="name">
+						<h1><a href="../index.html">Eventy</a></h1>
+					</div>
+					<div class="bar">
+						<input type="text" placeholder="Nome do evento"></input>
+					</div>
+					<div class="links">
+							<a href="cadastra.html">Cadastrar</a>
+							<a href="eventos-inscritos.html">Meu perfil</a>
+							<a onclick="deslogar()">Sair</a>
+					</div>
 				</div>
 			</div>`;
 		
 		document.getElementById("cabecalho").innerHTML = cabecalho;
-
 		var teste = `
 			<div class="autenticado">
 				<h1> Usuário já autenticado</h1>
@@ -33,7 +34,7 @@ window.onload = async function pagina(){
 
 		document.getElementById("corpo").innerHTML = teste;
 	}else{
-		var cabecalho = `
+		var card = `
 			<div class="cabecalho">
 				<div class="name">
 					<h1><a href="../index.html">Eventy</a></h1>
@@ -47,7 +48,7 @@ window.onload = async function pagina(){
 				</div>
 			</div>`;
 		
-		document.getElementById("cabecalho").innerHTML = cabecalho;
+		document.getElementById("cabecalho").innerHTML = card;
 	}
 
 }
@@ -96,10 +97,15 @@ async function FA(){
 	
 	var resposta = await promise.json();
 
+	window.alert(resposta[1]);
 
-	if(resposta[0] == '1'){
-		await window.alert(resposta[1]);
+	window.location.href="../index.html";
+}
+async function deslogar(){
 
-		window.location.href = "../index.html";
-	}
+	var promise = await fetch('php/deslogar.php', {
+		method:"POST"
+	});
+	
+	window.location.href="../index.html";
 }

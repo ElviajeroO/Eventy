@@ -8,16 +8,18 @@ window.onload = async function(){
 	
 	if (cod[0] == 1){
 		var cabecalho = `
-			<div class="cabecalho">
-				<div class="name">
-					<h1><a href="../index.html">Eventy</a></h1>
-				</div>
-				<div class="bar">
-					<input type="text" placeholder="Nome do evento"></input>
-				</div>
-				<div class="links">
-						<a href="cadastra.html">Cadastrar</a>
-						<a href="../index.html">Pagina Principal</a>
+				<div class="cabecalho">
+					<div class="name">
+						<h1><a href="../index.html">Eventy</a></h1>
+					</div>
+					<div class="bar">
+						<input type="text" placeholder="Nome do evento"></input>
+					</div>
+					<div class="links">
+							<a href="cadastra.html">Cadastrar</a>
+							<a href="eventos-inscritos.html">Meu perfil</a>
+							<a onclick="deslogar()">Sair</a>
+					</div>
 				</div>
 			</div>`;
 		
@@ -117,4 +119,12 @@ window.onload = async function(){
 
 		document.getElementById("corpo").innerHTML = teste;
 	}
+}
+async function deslogar(){
+
+	var promise = await fetch('php/deslogar.php', {
+		method:"POST"
+	});
+	
+	window.location.href="index.html";
 }

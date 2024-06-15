@@ -10,14 +10,15 @@ window.onload = async function pagina(){
 		var card = `
 			<div class="cabecalho">
 				<div class="name">
-					<h1><a href="../index.html">Eventy</a></h1>
+					<h1><a href="index.html">Eventy</a></h1>
 				</div>
 				<div class="bar">
 					<input type="text" placeholder="Nome do evento"></input>
 				</div>
 				<div class="links">
-						<a href="cadastra.html">Cadastrar</a>
-						<a href="eventos-inscritos.html">Meus Eventos</a>
+						<a href="paginas/cadastra.html">Cadastrar</a>
+						<a href="paginas/eventos-inscritos.html">Meu perfil</a>
+						<a onclick="deslogar()">Sair</a>
 				</div>
 			</div>`;
 		
@@ -122,4 +123,12 @@ async function Gravar(){
 			<p id='Link'><a href='autentica.html'>Autenticar</a></p>`;
 	}
 	
+}
+async function deslogar(){
+
+	var promise = await fetch('php/deslogar.php', {
+		method:"POST"
+	});
+	
+	window.location.href="index.html";
 }

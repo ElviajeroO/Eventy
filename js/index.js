@@ -18,7 +18,8 @@ window.onload = async function pagina(){
 				</div>
 				<div class="links">
 						<a href="paginas/cadastra.html">Cadastrar</a>
-						<a href="paginas/eventos-inscritos.html">Meus Eventos</a>
+						<a href="paginas/eventos-inscritos.html">Meu perfil</a>
+						<a onclick="deslogar()">Sair</a>
 				</div>
 			</div>`;
 		
@@ -121,3 +122,11 @@ async function AddCarrinho(id){
 
 }
  
+async function deslogar(){
+
+	var promise = await fetch('php/deslogar.php', {
+		method:"POST"
+	});
+	
+	window.location.href="index.html";
+}

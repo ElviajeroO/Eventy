@@ -43,6 +43,7 @@
 	display:flex;
 	align-items:center;
 	justify-content:space-around;
+	color:#BC91D9;
 }
 
 .links a{
@@ -50,6 +51,7 @@
 }
 
 .links a:hover{
+	cursor:pointer;
 	color:#BC91D9;
 }
 

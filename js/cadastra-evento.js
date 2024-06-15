@@ -16,7 +16,8 @@ window.onload = async function pagina(){
 				</div>
 				<div class="links">
 						<a href="cadastra.html">Cadastrar</a>
-						<a href="eventos-inscritos.html">Meus Eventos</a>
+						<a href="eventos-inscritos.html">Meu perfil</a>
+						<a onclick="deslogar()">Sair</a>
 				</div>
 			</div>`;
 		
@@ -70,3 +71,10 @@ var template = `<a>${resposta[1]}</a>`;
 document.getElementById('resposta').innerHTML = template;
 
 }
+async function deslogar(){
+
+	var promise = await fetch('php/deslogar.php', {
+		method:"POST"
+	});
+	
+	window.location.href="index.html";
