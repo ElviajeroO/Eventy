@@ -90,8 +90,12 @@ window.onload = async function pagina(){
 					<img src='upload/${dados[i].nome}'></img>
 				</div>
 				<div class='card-adic'>
-					<div class='card-cor'><a>${dados[i].nmax}</a></div>
-						<div class='card-tam'><a>${dados[i].num}</a></div>
+					<div class='card-cor'>
+						<a>Nmax: ${dados[i].nmax}</a>
+					</div>
+						<div class='card-tam'>
+							<a>Inscritos: ${dados[i].num}</a>
+						</div>
 				</div>
 				<div class='card-valor1'>
 					<a>Local: ${dados[i].local}</a>

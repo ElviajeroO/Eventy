@@ -6,7 +6,7 @@
 	$nmax = $_POST['nmax'];
 	$local = $_POST['local'];
 	$file = $_FILES['arquivo'];
-
+ 
 	$msg = array();
 
 	$msg = gravar_evento($nome,$nmax,$local,$file);

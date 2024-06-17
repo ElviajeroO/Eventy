@@ -321,7 +321,7 @@
 		return $dados;
 	}
 
-	function gravar_evento($nome, $nmax, $local, $file){ #TODO ERRO DE PERMISSÃO
+	function gravar_evento($nome, $nmax,$local, $file){ #TODO ERRO DE PERMISSÃO
 
 		$msg = array();
 
@@ -331,11 +331,16 @@
 
 		$connection = mysqli_connect($conn[0], $conn[1], $conn[2], $conn[3]);
 		
-		if (empty($nome)||empty($nmax)||empty($local)||empty($file['type'])){
+		if (empty($nome)||empty($nmax)||empty($local)||empty($file)){
 			array_push($msg, "0");
 			array_push($msg, "Preencha todos os campos");	
 		}else{
-			$query = "INSERT INTO produto (nome, nmax,num, local) VALUES('$nome', '$nmax',0, '$local')";
+
+			$abab = $connection->query("SELECT MAX(num) AS max_num FROM produto WHERE nome ='$nome'");
+			$row = $abab->fetch_assoc();
+			$num = $row['max_num'] + 1; // Incrementa o valor de `num` em 1
+
+			$query = "INSERT INTO produto (nome, nmax, num, local) VALUES('$nome', '$nmax',$num, '$local')";
 			mysqli_query($connection, $query);
 			$novo = "../img/".$nome;
 		    	move_uploaded_file($file["tmp_name"], $novo);
@@ -349,7 +354,7 @@
 	function inscrever_evento($id_produto){
 		
 		$msg = array();
-
+ 
 		$cp = extract_from_image("../img/porco.png");
 
 		$conn = preg_split("/[;]/", $cp);
@@ -358,16 +363,31 @@
 
 		$insert = "INSERT INTO carrinho_produto (id_carrinho, quantidade, id_produto) VALUES(1, 1, {$id_produto})";
 
-		if(mysqli_query($connection, $insert)){
+		$insert2 = "SELECT * FROM carrinho_produto WHERE quantidade > 0 and id_produto = '$id_produto'";
+		
+
+		$insert3 = "UPDATE produto SET num = num + 1 WHERE id = '$id_produto'";
+		if(mysqli_query($connection, $insert3)){
 			array_push($msg, "1");
-			array_push($msg, "Inscrito no evento");
+			array_push($msg, "numero de pessoas aumentado com sucesso");
 		}else{
 			array_push($msg, "0");
-			array_push($msg, "erro ao se inscrever no evento");
+			array_push($msg, "deu ruim time");
+		}
+
+
+		if(mysqli_num_rows(mysqli_query($connection, $insert2)) === 0){
+			if(mysqli_query($connection, $insert)){
+				array_push($msg, "1");
+				array_push($msg, "Inscrito no evento");
+			}
+		}else{
+			array_push($msg, "0");
+			array_push($msg, "erro,a ja inscrito no evento");
 		}
 
 		return $msg;
-	}
+	} 
 
 	function carrega_eventos(){
 

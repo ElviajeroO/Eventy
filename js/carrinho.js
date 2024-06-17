@@ -16,7 +16,7 @@ window.onload = async function(){
 						<input type="text" placeholder="Nome do evento"></input>
 					</div>
 					<div class="links">
-							<a href="cadastra.html">Cadastrar</a>
+							<a href="cadastra-evento.html">Cadastrar Evento</a>
 							<a href="eventos-inscritos.html">Meu perfil</a>
 							<a onclick="deslogar()">Sair</a>
 					</div>
@@ -68,7 +68,7 @@ window.onload = async function(){
 			//Template string para o subtotal da compra
 			template =
 			`<div class="subtotal-texto">
-				Desc: ${carrinho[i].num}
+				Num: ${carrinho[i].num}
 
 			</div>`
 
@@ -122,7 +122,7 @@ window.onload = async function(){
 }
 async function deslogar(){
 
-	var promise = await fetch('php/deslogar.php', {
+	var promise = await fetch('../php/deslogar.php', {
 		method:"POST"
 	});
 	

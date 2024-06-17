@@ -126,7 +126,7 @@ async function Gravar(){
 }
 async function deslogar(){
 
-	var promise = await fetch('php/deslogar.php', {
+	var promise = await fetch('../php/deslogar.php', {
 		method:"POST"
 	});
 	
