@@ -1,7 +1,5 @@
 <?php
 	include_once "./banco.php";
-	$email = $_POST['email'];
-
 
 	$pattern = '/.*@.*\..*/';
 
