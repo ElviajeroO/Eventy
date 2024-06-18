@@ -115,25 +115,14 @@ async function AddCarrinho(id){
 
 	dados.append('id_produto', id);
 
-	var formDataObject = {};
-	dados.forEach(function(value, key){
-		formDataObject[key] = value;
-	});
-
-	const encryptedData = encryptWithSecretKey(formDataObject, 'd6e0422cef85a338055b5a4a485eecb1' );
-
 	var promise = await fetch('php/add_carrinho.php', {
 		method:'POST',
-            	headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-			iv:encryptedData.iv,
-			data:encryptedData.data
-		})
+		body: dados
 	});
 	
 	var resposta = await promise.json();
 
-
+	window.location.reload();
 }
  
 async function deslogar(){
@@ -143,4 +132,25 @@ async function deslogar(){
 	});
 	
 	window.location.href="index.html";
+}
+function encryptWithSecretKey(data, secretKey) {
+
+    const dataString = JSON.stringify(data);
+    
+    const iv = CryptoJS.lib.WordArray.random(16);
+    
+    const encrypted = CryptoJS.AES.encrypt(dataString, CryptoJS.enc.Hex.parse(secretKey), {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    
+    const result = {
+        iv: iv.toString(CryptoJS.enc.Hex),
+        data: encrypted.toString()
+    };
+
+	console.log(result);
+
+    return result;
 }

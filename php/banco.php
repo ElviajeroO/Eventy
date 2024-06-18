@@ -361,7 +361,7 @@
 
 		$connection = mysqli_connect($conn[0], $conn[1], $conn[2], $conn[3]);
 
-		$insert = "INSERT INTO carrinho_produto (id_carrinho, quantidade, id_produto) VALUES(1, 1, {$id_produto})";
+		$insert = "INSERT INTO carrinho_produto (id_carrinho, quantidade, id_produto) VALUES(1, 1, '$id_produto')";
 
 		$insert2 = "SELECT * FROM carrinho_produto WHERE quantidade > 0 and id_produto = '$id_produto'";
 		
