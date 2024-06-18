@@ -47,10 +47,22 @@ async function Trocar(){
 	email = document.getElementById('email').value;
 	var form = document.getElementById('form_cadastro');
 	var dados = new FormData(form);
+	dados.append("email", email);
+
+	var formDataObject = {};
+	dados.forEach(function(value, key){
+		formDataObject[key] = value;
+	});
+
+	const encryptedData = encryptWithSecretKey(formDataObject, 'd6e0422cef85a338055b5a4a485eecb1' );
 
 	var promise = await fetch('../php/rec-senha.php', {
 		method:'POST',
-		body: dados
+            	headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			iv:encryptedData.iv,
+			data:encryptedData.data
+		})
 	});
 
 	var resposta = await promise.json();
@@ -74,9 +86,20 @@ async function Codigo(){
 	var dados = new FormData(form);
 	dados.append('email', email);
 
+	var formDataObject = {};
+	dados.forEach(function(value, key){
+		formDataObject[key] = value;
+	});
+
+	const encryptedData = encryptWithSecretKey(formDataObject, 'd6e0422cef85a338055b5a4a485eecb1' );
+
 	var promise = await fetch('../php/ver-codigo.php', {
 		method:'POST',
-		body: dados
+            	headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			iv:encryptedData.iv,
+			data:encryptedData.data
+		})
 	});
 
 	var resposta = await promise.json();

@@ -53,22 +53,33 @@ window.onload = async function pagina(){
 
 async function Gravar(){
 
-    var form = document.getElementById('cadastra-forms');
-    var file = document.getElementById('file').files;
-    var dados = new FormData(form);
-    dados.append('arquivo', file[0]);
-    console.log(dados);
-    var promise = await fetch('../php/gravar-evento.php', {
-        method: 'POST',
-        body: dados
-    });
+    	var form = document.getElementById('cadastra-forms');
+    	var file = document.getElementById('file').files;
+    	var dados = new FormData(form);
+    	dados.append('arquivo', file[0]);
 
-var resposta = await promise.json();
+	var formDataObject = {};
+	dados.forEach(function(value, key){
+		formDataObject[key] = value;
+	});
 
+	const encryptedData = encryptWithSecretKey(formDataObject, 'd6e0422cef85a338055b5a4a485eecb1' );
 
-var template = `<a>${resposta[1]}</a>`;
+    	var promise = await fetch('../php/gravar-evento.php', {
+		method:'POST',
+            	headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			iv:encryptedData.iv,
+			data:encryptedData.data
+		})
+    	});
 
-document.getElementById('resposta').innerHTML = template;
+	var resposta = await promise.json();
+	
+	
+	var template = `<a>${resposta[1]}</a>`;
+	
+	document.getElementById('resposta').innerHTML = template;
 
 }
 async function deslogar(){

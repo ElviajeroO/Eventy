@@ -1,6 +1,7 @@
 var email;
-
+var secretkey;
 window.onload = async function pagina(){
+	
 	var promise = await fetch('../php/session.php',{
 		method:'GET'
 	});
@@ -84,15 +85,27 @@ async function CadastrarTudo(){
 	var dados = new FormData(form);
 
 	dados.append('senha', s1.toString(CryptoJS.enc.Base64));
+	dados.append('email', document.getElementById("email").value);
+
+	var formDataObject = {};
+
+	dados.forEach(function(value, key){
+		formDataObject[key] = value;
+	});
+
+	const encryptedData = encryptWithSecretKey(formDataObject, 'd6e0422cef85a338055b5a4a485eecb1' );
+
 
 	var promise = await fetch('../php/cadastra.php',{
 		method:'POST',
-		body:dados
+            	headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			iv:encryptedData.iv,
+			data:encryptedData.data
+		})
 	});
 
 	var resposta = await promise.json();
-
-	console.log(resposta);
 
 	if(resposta[0]=="0"){
 		
@@ -130,13 +143,22 @@ async function autentica(){
 	var dados = new FormData(form);
 	
 	dados.append('email', email);
-
 	dados.append('codconfirmacao', codigo);
 
+	var formDataObject = {};
+	dados.forEach(function(value, key){
+		formDataObject[key] = value;
+	});
+
+	const encryptedData = encryptWithSecretKey(formDataObject, 'd6e0422cef85a338055b5a4a485eecb1' );
 
 	var promise = await fetch('../php/codconfirma.php',{
 		method:'POST',
-		body:dados
+            	headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			iv:encryptedData.iv,
+			data:encryptedData.data
+		})
 	});
 
 	var resposta = await promise.json();
@@ -156,4 +178,26 @@ async function deslogar(){
 	});
 	
 	window.location.href="../index.html";
+}
+
+function encryptWithSecretKey(data, secretKey) {
+
+    const dataString = JSON.stringify(data);
+    
+    const iv = CryptoJS.lib.WordArray.random(16);
+    
+    const encrypted = CryptoJS.AES.encrypt(dataString, CryptoJS.enc.Hex.parse(secretKey), {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    
+    const result = {
+        iv: iv.toString(CryptoJS.enc.Hex),
+        data: encrypted.toString()
+    };
+
+	console.log(result);
+
+    return result;
 }

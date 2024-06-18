@@ -115,10 +115,20 @@ async function AddCarrinho(id){
 
 	dados.append('id_produto', id);
 
-	console.log(dados);
+	var formDataObject = {};
+	dados.forEach(function(value, key){
+		formDataObject[key] = value;
+	});
+
+	const encryptedData = encryptWithSecretKey(formDataObject, 'd6e0422cef85a338055b5a4a485eecb1' );
+
 	var promise = await fetch('php/add_carrinho.php', {
-		method:"POST",
-		body: dados
+		method:'POST',
+            	headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			iv:encryptedData.iv,
+			data:encryptedData.data
+		})
 	});
 	
 	var resposta = await promise.json();
